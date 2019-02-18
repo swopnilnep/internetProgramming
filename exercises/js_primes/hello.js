@@ -43,9 +43,22 @@ function getNPrimes(n){
 }
 
 function printNPrimes(n){
-    // best case: o(n)
-    // average case: o(n^2)/2
-    // worst case: o(n^2)
-    console.log(getNPrimes(n));
-    document.write(getNPrimes(n));
+    document.writeln(`<div style="font-family:auto; font-size:20pt; color:blue;">${getNPrimes(n)}</div>`);
 }
+
+function greet(name){
+    document.write(`<p style="color:red; font-size:50pt; font-family:auto;">Hello, ${name}!</p>`)
+}
+
+function main(){
+    // url-example: http://localhost:8000/hello.html?name=Roman&n=4
+    
+    let params = new URLSearchParams(document.location.search.substring(1));
+    let name = params.get("name"); // monty
+    let number = params.get("n"); // 4
+
+    greet(name);
+    printNPrimes(number);
+}
+
+main();
