@@ -1,4 +1,4 @@
 # Internet Programming
-| Name | KATIE | Date |  
-|---|---|---|
-|[Exercise 1](/exercises/js_primes) | ![https://raw.githubusercontent.com/swopnilnep/bikeshare/master/images/link.png](https://katie.luther.edu/mod/assign/view.php?id=364121) | `2019-02-19` |
+| Name | Description | Date | KATIE | Directory | 
+|---|---|---|---|---|
+| Exercise 1 | Prime numbers and JavaScript functions | `2019-02-18` | [![ex1](link.png)](exercises/js_primes) | [![ex1_katie](link.png)](https://katie.luther.edu/mod/assign/view.php?id=364121) |
