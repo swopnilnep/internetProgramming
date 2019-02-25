@@ -21,8 +21,7 @@
     margin-top: 10%;
 }
 
-
-#oper {
+#operator-screen {
     align-items: center;
     text-align: left;
     font-size: 30px;
@@ -30,6 +29,13 @@
     margin-top: 10%;
 }
 
+#history-screen {
+    align-items: center;
+    text-align: left;
+    font-size: 10px;
+    color: rgb(173, 173, 173);
+    margin-top: 10%;
+}
 
 #main-container {
     flex-direction: column; 
