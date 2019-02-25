@@ -1,3 +1,37 @@
-body {
-    width: 33%;
+.btn {
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 5px;
+    font-size: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    border-width:1;
+    border-color: white;
+
+}  
+
+#res {
+    align-items: center;
+    text-align: right;
+    font-size: 50px;
+    margin-top: 10%;
+}
+
+
+#oper {
+    align-items: center;
+    text-align: left;
+    font-size: 30px;
+    color: red;
+    margin-top: 10%;
+}
+
+
+#main-container {
+    flex-direction: column; 
+    min-width: 23%;
 }
