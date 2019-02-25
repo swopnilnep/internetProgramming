@@ -13,8 +13,65 @@
     </head>
     
     <body>
-        <div id=res><!-- Division for the screen --></div>
-        <div id=btns><!-- Division for the buttons --></div>
+        <div class="center-screen">
+            <div id=res><!-- Division for the screen --></div>
+            <div id=btns><!-- Division for the buttons -->
+                <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td type="button" class="btn btn-light">C</td>
+                                <td type="button" class="btn btn-warning" id="mod">%</td>
+                                <td type="button" class="btn btn-warning" id="divide">/</td>
+                            </tr>
+                            <tr>
+                                <td type="button" class="btn btn-light">7</td>
+                                <td type="button" class="btn btn-light">8</td>
+                                <td type="button" class="btn btn-light">9</td>
+                                <td type="button" class="btn btn-warning" id="multiply">*</td>
+                            </tr>
+                            <tr>
+                                <td type="button" class="btn btn-light">4</td>
+                                <td type="button" class="btn btn-light">5</td>
+                                <td type="button" class="btn btn-light">6</td>
+                                <td type="button" class="btn btn-warning" id="sub">-</td>                          
+                            </tr>
+                            <tr>
+                                <td type="button" class="btn btn-light">1</td>
+                                <td type="button" class="btn btn-light">2</td>
+                                <td type="button" class="btn btn-light">3</td>
+                                <td type="button" class="btn btn-warning" id="add">+</td>                          
+                            </tr>
+                            <tr>
+                                <td colspan="2" type="button" class="btn btn-light">0</td>
+                                <td type="button" class="btn btn-light">pi</td>
+                                <td type="button" class="btn btn-warning" id="equals">=</td>                          
+                            </tr>
+                        </tbody>
+                        </table>
+            </div>
+        </div>
+        
+
+        <style type=text/css>
+            .btn {
+                border-radius: 0;
+                margin: 0;
+
+                min-height: 80px;
+                min-width: 80px;
+            }
+
+            .center-screen {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                min-height: 100vh;
+            }
+
+        </style>
+
         <script src="js/jquery.js" crossorigin="anonymous"></script>
         <script src="js/popper.js" crossorigin="anonymous"></script>
         <script src="js/bootstrap.js" crossorigin="anonymous"></script>
