@@ -12,6 +12,7 @@
     <head>
         <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonymous">
         <link rel="stylesheet" href="css/calculator.css" type="text/css">
+        <title>Calculator by Swopnil Shrestha</title>
     </head>
  
     <body>
@@ -20,9 +21,7 @@
         <div class="container center-screen" id="main-container">
 
             <div class="row">
-                <div id="history-screen" class="col-1"></div>
-                <div id="operator-screen" class="col-1"></div>
-                <div id="res" class="col-10"></div>
+                <div id="res" class="col-12"></div>
             </div> 
 
             <div class="row">
@@ -54,8 +53,8 @@
             </div>
 
             <div class="row">
-                    <div id="n0" class="col-6 btn btn-light" type="button" onclick="enterDigit('0');">0</div>
-                <div id="opDecimal" class="col-sm btn btn-light" type="button" onclick=";">.</div>
+                <div id="n0" class="col-6 btn btn-light" type="button" onclick="enterDigit('0');">0</div>
+                <div id="opDecimal" class="col-sm btn btn-light" type="button" onclick="addDecimalPoint();">.</div>
                 <div id="opEquals" class="col-sm btn btn-warning" type="button" onclick="evalExpr();">=</div>
             </div>
 

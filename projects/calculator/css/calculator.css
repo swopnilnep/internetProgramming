@@ -22,14 +22,6 @@
     overflow: scroll;
 }
 
-#history-screen {
-    align-items: inherit;
-    text-align: left;
-    font-size: 15px;
-    color: rgb(173, 173, 173);
-    margin-top: 10%;
-}
-
 #main-container {
     flex-direction: column; 
     min-width: 23%;

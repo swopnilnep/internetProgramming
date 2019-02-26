@@ -6,6 +6,7 @@
 "use strict";
 var screen;
 var calcStream = "";
+var streamHasDecimal = false; // check if there is a decimal point '.' in the stream
 
 const ALL_OPERATORS = ["+","%","×","÷","-"];
 const MINUS = "-";
@@ -45,7 +46,9 @@ function enterOp(newOperator){
 }
 
 function clearScreen(){
-    screen.innerHTML
+    screen.innerHTML = "Welcome to Calculator!"
+    calcStream = "";
+    updateScreen();
 }
 
 function updateScreen(){
@@ -53,12 +56,43 @@ function updateScreen(){
 }
 
 function backSpace(){
-    calcStream = calcStream.substring(0,calcStream.length-1);
+    updateScreen();
+}
+
+function evalExpr(){
+    
+    let new_expr;
+    let i;
+    for (i = 0; i < calcStream.length; i++) {
+        c = calcStream.charAt(i);
+        if (c == "÷"){new_expr += "/";}
+        else if (c == "×"){new_expr += "*";}
+        else {new_expr += c;}
+    } 
+
+    calcStream = eval(new_expr);
+    updateScreen;  
+      
+}
+
+function addDecimalPoint(){
+    
+    console.log("press decimal point")
+    let lastEnteredChar = calcStream.slice(-1);
+    if (!streamHasDecimal){
+        
+        if (lastEnteredChar == 0 || ALL_OPERATORS.includes(lastEnteredChar)){
+            calcStream += "0."
+        } 
+        else {calcStream += "."}
+        streamHasDecimal = true;
+    }
+
     updateScreen();
 }
 
 // Attach screens
 $(document).ready(function () {
     screen = document.querySelector("#res");
-    screen.innerHTML = "Welcome to Calculator!";
+    clearScreen();
 });
