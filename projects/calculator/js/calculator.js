@@ -41,14 +41,15 @@ function enterOp(newOperator){
     else{
         // add the new operator at the end of calcstream
         calcStream += newOperator;
+        streamHasDecimal=false;
     }
     updateScreen();
 }
 
 function clearScreen(){
-    screen.innerHTML = "Welcome to Calculator!"
+    screen.innerHTML = "Welcome to Calculator!";
     calcStream = "";
-    updateScreen();
+    streamHasDecimal=false;
 }
 
 function updateScreen(){
@@ -56,43 +57,61 @@ function updateScreen(){
 }
 
 function backSpace(){
-    updateScreen();
+    
+    streamHasDecimal = !(calcStream.slice(-1) === ".");
+    
+    if (calcStream.length > 1){
+        calcStream = calcStream.substring(0,calcStream.length-1);
+        updateScreen();
+    }
+    else if (calcStream == "" || calcStream.length === 1){
+        calcStream = "\n";
+        updateScreen();
+        calcStream="";
+    } else {
+        updateScreen();
+    }
 }
 
 function evalExpr(){
-    
-    let new_expr;
+    let new_expr="";
     let i;
     for (i = 0; i < calcStream.length; i++) {
-        c = calcStream.charAt(i);
+        let c = calcStream.charAt(i);
         if (c == "÷"){new_expr += "/";}
         else if (c == "×"){new_expr += "*";}
         else {new_expr += c;}
     } 
+    try{
+        calcStream = ""+eval(new_expr).toFixed(2);
+        updateScreen();
+        streamHasDecimal = calcStream.includes(".");
 
-    calcStream = eval(new_expr);
-    updateScreen;  
-      
+    }
+    catch(e) {
+        calcStream = "Invalid";
+        updateScreen();
+        calcStream="";
+    }
+    
 }
 
 function addDecimalPoint(){
-    
     console.log("press decimal point")
     let lastEnteredChar = calcStream.slice(-1);
     if (!streamHasDecimal){
-        
-        if (lastEnteredChar == 0 || ALL_OPERATORS.includes(lastEnteredChar)){
+
+        if (ALL_OPERATORS.includes(lastEnteredChar)){
             calcStream += "0."
         } 
         else {calcStream += "."}
         streamHasDecimal = true;
     }
-
     updateScreen();
 }
 
 // Attach screens
 $(document).ready(function () {
     screen = document.querySelector("#res");
-    clearScreen();
+    screen.innerHTML="Welcome to Calculator!";
 });

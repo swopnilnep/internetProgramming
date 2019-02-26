@@ -1,5 +1,5 @@
 .btn {
-    min-width: 80px;
+    min-width: 40px;
     min-height: 80px;
     border-radius: 5px;
     font-size: 30px;
@@ -20,6 +20,20 @@
     font-size: 50px;
     margin-top: 10%;
     overflow: scroll;
+}
+
+#name-tag {
+    text-align: right;
+    font-size: 10px;
+    overflow: scroll;
+    color: rgb(100,100,100);
+}
+
+#date-tag {
+    text-align: left;
+    font-size: 10px;
+    overflow: scroll;
+    color: rgb(100,100,100);
 }
 
 #main-container {
