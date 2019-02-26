@@ -19,20 +19,13 @@
     text-align: right;
     font-size: 50px;
     margin-top: 10%;
-}
-
-#operator-screen {
-    align-items: center;
-    text-align: left;
-    font-size: 30px;
-    color: red;
-    margin-top: 10%;
+    overflow: scroll;
 }
 
 #history-screen {
-    align-items: center;
+    align-items: inherit;
     text-align: left;
-    font-size: 10px;
+    font-size: 15px;
     color: rgb(173, 173, 173);
     margin-top: 10%;
 }

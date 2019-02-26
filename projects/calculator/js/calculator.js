@@ -4,69 +4,61 @@
 // Date: 24/02/
 
 "use strict";
-
-// Screen objects
 var screen;
-var operatorScreen;
+var calcStream = "";
 
-// Calculator logic
-var digits = ""; // The value on which to be operated on. Will be parsed as float in 'evalExpr()'
-var operator = ""; // Current operator for doing calculations
-var currentValue = 0.0; // Tracks the value for multiple calculations
+const ALL_OPERATORS = ["+","%","×","÷","-"];
+const MINUS = "-";
+const NON_REPEATING_OPERATORS = ["+","%","×","÷"];
 
-function enterDigit(newDigit) {
+function enterDigit(newDigit){
     console.log("press " + newDigit);
-    digits = digits + newDigit;
-    screen.innerHTML = digits;
+    calcStream += newDigit;
+    updateScreen();
+}
+
+function enterOp(newOperator){
+    console.log("press " + newOperator);
+    let lastEnteredChar = calcStream.slice(-1);
+
+    let lastCharacterMinus = lastEnteredChar === MINUS && ALL_OPERATORS.includes(newOperator); // do nothing - AND +
+    let conflictingOperators = NON_REPEATING_OPERATORS.includes(lastEnteredChar) && NON_REPEATING_OPERATORS.includes(newOperator); // replace last operator with new + AND %
+    let repeatingMinus = lastEnteredChar === MINUS && newOperator === MINUS; // do nothing
+    let firstCharOperatorExceptMinus = lastEnteredChar === "" && newOperator !== MINUS;
+
+    if (conflictingOperators){
+        // this expression if true if
+        // the newly entered operator AND the last entered character are in the list of non repeating operators
+        // or, the newly entered operator is a minus and the last entered operator is character is also a minus
+        // purpose: this prevents the repetition of operators in the stream so that the answer is not syntactically incorrect. 
+        // function: this replaces the last entered character (if the condition match) with the new operator.
+        calcStream = calcStream.substring(0,calcStream.length-1)+newOperator;
+    } else if (repeatingMinus || lastCharacterMinus || firstCharOperatorExceptMinus) {
+        // do nothing
+        return;
+    }
+    else{
+        // add the new operator at the end of calcstream
+        calcStream += newOperator;
+    }
+    updateScreen();
 }
 
 function clearScreen(){
-    console.log("clear the screen")
-
-    // reset variables
-    currentValue = 0.0;
-    digits = "";
-    operator = "";
-
-    // need to reset screens
+    screen.innerHTML
 }
 
-function evalExpr(){
-    let digitExists = digits !== ""; // parseFloat returns null value if digit does not exist
-    let operatorExists = operator !== "";
-
-    if (digitExists && !operatorExists){ // reset digits if no operator exists
-        let number;
-        number = parseFloat(digits);
-
-        if (currentValue === 0){
-            currentValue = number;
-            digits = "";
-        }
-
-        // Operator does not exist but digit exists
-        else {currentValue = 0.0;}
-    } 
-
-    else if (digitExists && operatorExists) {  // do calculations if operator also exsits
-        // 0 + 2 = 0
-        let number;
-        number = parseFloat(digits);
-
-        if (operator === "add"){currentValue += number;}
-        else if (operator === "substract"){currentValue -= number;}
-        else if (operator === "divide"){currentValue /= number;}
-        else if (operator === "multiply"){currentValue *= number;}
-        else if (operator === "modulus"){currentValue = currentValue % number;}
-
-        // TODO
-        // - show currentValue on the screen
-
-        digits = "";
-        operator = "";
-    }
-
-    else {
-        console.log("either digit or operator does not exist");
-    }
+function updateScreen(){
+    screen.innerHTML = calcStream;
 }
+
+function backSpace(){
+    calcStream = calcStream.substring(0,calcStream.length-1);
+    updateScreen();
+}
+
+// Attach screens
+$(document).ready(function () {
+    screen = document.querySelector("#res");
+    screen.innerHTML = "Welcome to Calculator!";
+});

@@ -82,12 +82,6 @@ function enterOp(newOperator) {
     console.log("press " + operator);
 }
 
-// 0 already
-// - 2
-// + 3
-// * 10
-
-
 $(document).ready(function () {
     screen = document.querySelector("#res");
     screen.innerHTML = currentValue;
