@@ -5,27 +5,82 @@
     Date: 23/03/2019
  -->
 
-<DOCTYPE html>
+ <DOCTYPE html>
     <html lang=en>
-        <head>
-            <meta charset="UTF-8"> 
-            <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonymous">
-            <link rel="shortcut icon" type="image/png" href="https://static.planetminecraft.com/files/avatar/558440.png"/>
-            <link rel="stylesheet" href="css/calculator.css" type="text/css">
-            <title>Dropdown Menu</title>
-        </head>
-        <body>
-            <!-- JavaScript loading structure -->
-            <script src="js/model.js" type="text/javascript"></script>
-            <script src="js/control.js" type="text/javascript"></script>
-            <script src="js/view.js" type="text/javascript"></script>
-            
-            
-            <!-- Attatch Necessary Scripts -->
-            <script src="js/jquery.js" crossorigin="anonymous"></script>
-            <script src="js/popper.js" crossorigin="anonymous"></script>
-            <script src="js/bootstrap.js" crossorigin="anonymous"></script>
-        </body>
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+        <title>BusyBee</title>
+
+    </head>
+
+    <body>
+        <!-- JavaScript loading structure -->
+        <script src="js/model.js" type="text/javascript"></script>
+        <script src="js/control.js" type="text/javascript"></script>
+        <script src="js/view.js" type="text/javascript"></script>
+
+        <div class="container" id=main-container>
+            <div class="container" id="title-container">
+                <h1 class="display-3">BusyBee</h1>
+                <p class="lead">The productivity app for busy bees. Sometimes for busy people.</p>
+            </div>
+
+            <form>
+                <div class="form-row align-items-center">
+                  
+                    <div class="col-md-4 my-1">
+                        <label for="taskNameValidation">Task name</label>
+                        <input type="text" class="form-control" id="taskNameValidation" placeholder="Task" value="Honey the hives..." required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 my-1">
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Assign to...</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                          <option selected>Assign to...</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                    </div>
+                  
+                    <div class="col-md-2 my-1">
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Priority</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                          <option selected>Assign to...</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                    </div>
+                  
+
+                    <div class="col-md-2 my-1">
+                        <label for="taskNameValidation">Due Date</label>
+                        <input type="text" class="form-control" id="taskNameValidation" placeholder="Task" value="MM/DD/YY" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                  <div class="col-auto my-1">
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                  </div>
+                </div>
+              </form>
+
+            <table id=taskTable></table>
+
+            <!-- Attatch Bootstrap Scripts -->
+            <script src="js/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+            <script src="js/popper.min.js" crossorigin="anonymous"></script>
+            <script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
+    </body>
 
     </html>
 </DOCTYPE>
