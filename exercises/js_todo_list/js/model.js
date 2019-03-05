@@ -1,7 +1,10 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+/* jshint browser: true */
+
 // Object Model of the JavaScript TodoList App
 
 "use strict";
-
 class TaskList {
     constructor(){
         this.myTasks = []; // listItems is a map of 'Task' objects

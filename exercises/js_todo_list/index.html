@@ -40,41 +40,68 @@
                     </div>
 
                     <div class="col-md-2 my-1">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Assign to...</label>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                          <option selected>Assign to...</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </select>
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Assign to</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormSelectAssignee"></select>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
                   
                     <div class="col-md-2 my-1">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Priority</label>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                          <option selected>Assign to...</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </select>
+                        <label class="mr-sm-2" for="inlineFormSelectPriority">Priority</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormSelectPriority" required></select>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
                   
 
                     <div class="col-md-2 my-1">
-                        <label for="taskNameValidation">Due Date</label>
-                        <input type="text" class="form-control" id="taskNameValidation" placeholder="Task" value="MM/DD/YY" required>
+                        <label for="inlineFormSelectDueDate">Due Date</label>
+                        <input type="date" class="form-control" id="inlineFormSelectDueDate" placeholder="Task" value="MM/DD/YY" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
 
                   <div class="col-auto my-1">
-                    <button type="submit" class="btn btn-primary">Add Task</button>
+                    <button type="submit" class="btn btn-primary" onclick="submit()">Add Task</button>
                   </div>
                 </div>
               </form>
 
-            <table id=taskTable></table>
+            <table  class="container" id=taskTable>
+                <thread>
+                    <tr>
+                        <th></th>
+                        <th>Task</th>
+                        <th>Assigned To</th>
+                        <th>Priority</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thread>
+            </table>
+
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Store</th>
+                            <th>Section</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shoppinglist"></tbody>
+                </table>
+                <button class="bottommargin" id='save_list' onclick=saveList(); type="button" role="button">Save List</button>
+    
+                <button class="bottommargin float-right" id='remove_all' onclick=removeAll(); type="button" role="button">Remove All</button>
+                <button class="bottommargin float-right rightmargin" id='remove_purchased' onclick=removePurchased(); type="button" role="button">Remove Purchased</button>
+    
+            </div>`
 
             <!-- Attatch Bootstrap Scripts -->
             <script src="js/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
