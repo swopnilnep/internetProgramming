@@ -2,7 +2,7 @@
 /* jshint node: true */
 /* jshint browser: true */
 'use strict';
-class ShoppingView {
+class TaskView {
     constructor(model) {
         // The bind() method creates a new function that, when called, has its this keyword set to the provided value.
         model.subscribe(this.redrawList.bind(this))

@@ -6,8 +6,8 @@
 var assigneeMembers = ["Charles Dickens", "Nikolai Gogol", "Jhumpa Lahiri",
     "Alduous Huxley", "Carl Jung", "Steven Pinker", "Mihaly Csikszentmihalyi"];
 
-var todoList = new taskList();
-var taskView = new ShoppingView(todoList);
+var todoList = new TaskList();
+var todoView = new TaskView(todoList);
 
 // Grabs each task from form input and adds a new task in the TaskList
 function clickedon() {
@@ -90,7 +90,6 @@ function newRow() {
 
 function populateRows() {
 
-    //this is the last row, not 2nd to last :/
     var priority = $('#priority').val();
     if (priority == 'Low') {
         document.getElementById('output_table').rows[second_to_last_row].setAttribute("style", "background-color: #adebad;");

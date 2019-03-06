@@ -20,20 +20,23 @@ class Task {
     }
 }
 
+// AbstractList class contains basic list functionality implements as a list datatype
+// Add or remove items from the list
 class AbstractList {
-
     constructor() {
-        this.handlers = []
+        this.listItems = [];
     }
 
-    subscribe(fn) {
-        this.handlers.push(fn);
+    addToList(newItem) {
+        this.listItems.push(newItem);
     }
 
-    unsubscribe(fn) {
-        this.handlers = this.handlers.filter(
+    removeFromList(oldItem) {
+        // Filter is like using lambda functions in Python
+        // 'Unsubscribes' to the item specified
+        this.listItems = this.listItems.filter(
             function (task) {
-                if (task !== fn) {
+                if (task !== oldItem) {
                     return task;
                 }
             }
@@ -42,16 +45,15 @@ class AbstractList {
 
     publish(msg, someobj) {
         var scope = someobj || window;
-        for (let fn of this.handlers) {
+        for (let fn of this.listItems) {
             fn(scope, msg)
         }
     }
 }
-
-
-class taskList extends AbstractList {
+class TaskList extends AbstractList {
+    // gets the basic List structure implementation from the AbstractList
     constructor() {
-        super()
+        super();
         this.newItems = [];
         this.oldItems = [];
     }
