@@ -1,31 +1,33 @@
-/* jshint esversion: 6 */
-/* jshint node: true */
-/* jshint browser: true */
+class ShoppingView {
+    constructor(model) {
+        // The bind() method creates a new function that, when called, has its this keyword set to the provided value.
+        model.subscribe(this.redrawList.bind(this))
+    }
 
-"use strict";
+    redrawList(taskList, msg) {
+        let tbl = document.getElementById("taskList")
+        tbl.innerHTML = ""
+        for (let task of taskList.newItems) {
 
-var fieldAssignTo;
-var fieldPriority;
-var fieldDueDate;
+            this.addRow(task, tbl)
+        }
+    }
 
+    addRow(task, parent) {
+        let row = document.createElement("tr")
+        row.classList.add(task.priority)
+        let cb = document.createElement("input")
+        cb.type = "checkbox"
+        cb.classList.add("form-control")
+        cb.onclick = function () { task.purchased = true; row.classList.add('checked'); row.classList.add('strike_through');}
+        row.appendChild(cb)
 
-var assigneeMembers = ["Charles Dickens","Nikolai Gogol","Jhumpa Lahiri",
-                "Alduous Huxley","Carl Jung","Steven Pinker","Mihaly Csikszentmihalyi"];
-var priorityMembers = ["Top","High","Medium","Low"];
+        for (let val of ['task', 'assignee', 'date']) {
+            let td = document.createElement("td")
+            td.innerHTML = task[val]
+            row.appendChild(td)
+        }
 
-
-function populateSelectOption(elementId, optionsArray) {
-    let menu = document.querySelector(elementId);
-    for (let artist of optionsArray) {
-        let newOption = document.createElement("option");
-        newOption.setAttribute("value", artist);
-        newOption.innerHTML = artist;
-        menu.appendChild(newOption);
+        parent.appendChild(row)
     }
 }
-
-
-window.onload = function() {
-    populateSelectOption("#inlineFormSelectAssignee", assigneeMembers);
-    populateSelectOption("#inlineFormSelectPriority", priorityMembers);
-};

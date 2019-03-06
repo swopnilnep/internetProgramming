@@ -1,58 +1,78 @@
-/* jshint esversion: 6 */
-/* jshint node: true */
-/* jshint browser: true */
+'use strict';
+class Item {
+    constructor(task, assignee, priority, date) {
+        this.task = task;
+        this.assignee = assignee;
+        this.priority = priority;
+        this.date = date;
 
-// Object Model of the JavaScript TodoList App
+        this._done = false;
 
-"use strict";
-class TaskList {
-    constructor(){
-        this.myTasks = []; // listItems is a map of 'Task' objects
     }
 
-    add(new_task){
-        this.myTasks.push(new_task);
+    get purchased() {
+        return this._done;
     }
-    
+
+    set purchased(nv) {
+        this._done = nv;
+    }
+
+
+
 }
-class Task {
-    constructor(name, assignedTo, priority, dueDate){
-        this.myName = name;
-        this.myAssignee = assignedTo;
-        this.myPriority = priority;
-        this.myDueDate = dueDate;
+
+class Subject {
+
+    constructor() {
+        this.handlers = []
     }
 
-    // Name Functions
-    get name(){
-        return this.myName;
-    }
-    set name(new_name){
-        this.myName = new_name;
+    subscribe(fn) {
+        this.handlers.push(fn);
     }
 
-    // Assignee Functions
-    get assignee(){
-        return this.myAssignee;
-    }
-    set assignee(new_assignee){
-        this.myAssignee = new_assignee;
-    }
-
-    // Priority Functions
-    get priority(){
-        return this.priority;
-    }
-    set priority(new_priority){
-        this.myPriority = new_priority;
+    unsubscribe(fn) {
+        this.handlers = this.handlers.filter(
+            function (task) {
+                if (task !== fn) {
+                    return task;
+                }
+            }
+        );
     }
 
-    // Due Date Functions
-    get dueDate(){
-        return this.myDueDate;
+    publish(msg, someobj) {
+        var scope = someobj || window;
+        for (let fn of this.handlers) {
+            fn(scope, msg)
+        }
     }
-    set dueDate(new_dueDate){
-        this.myDueDate = new_dueDate;
+}
+
+
+class ShoppingList extends Subject {
+    constructor() {
+        super()
+        this.newItems = [];
+        this.oldItems = [];
     }
-   
+
+    addTask(task) {
+        this.newItems.push(task);
+        this.publish('newtask', this);
+    }
+
+    update() {
+        this.publish('', this);
+    }
+
+    emptyList() {
+        this.newItems = [];
+        this.oldItems = [];
+    }
+
+    cleanList() {
+
+    }
 }
