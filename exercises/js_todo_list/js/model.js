@@ -2,30 +2,25 @@
 /* jshint node: true */
 /* jshint browser: true */
 'use strict';
-class Item {
+class Task {
     constructor(task, assignee, priority, date) {
         this.task = task;
         this.assignee = assignee;
         this.priority = priority;
         this.date = date;
-
         this._done = false;
-
     }
 
     get purchased() {
         return this._done;
     }
 
-    set purchased(nv) {
-        this._done = nv;
+    set purchased(newValue) {
+        this._done = newValue;
     }
-
-
-
 }
 
-class Subject {
+class AbstractList {
 
     constructor() {
         this.handlers = []
@@ -54,7 +49,7 @@ class Subject {
 }
 
 
-class ShoppingList extends Subject {
+class taskList extends AbstractList {
     constructor() {
         super()
         this.newItems = [];

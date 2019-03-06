@@ -1,26 +1,25 @@
 /* jshint esversion: 6 */
 /* jshint node: true */
 /* jshint browser: true */
-
 "use strict";
 
 var assigneeMembers = ["Charles Dickens", "Nikolai Gogol", "Jhumpa Lahiri",
-    "Alduous Huxley", "Carl Jung", "Steven Pinker", "Mihaly Csikszentmihalyi"
-];
+    "Alduous Huxley", "Carl Jung", "Steven Pinker", "Mihaly Csikszentmihalyi"];
 
-var taskModel = new ShoppingList();
-var taskView = new ShoppingView(taskModel);
+var todoList = new taskList();
+var taskView = new ShoppingView(todoList);
 
+// Grabs each task from form input and adds a new task in the TaskList
 function clickedon() {
-    //rowcolids uses id, not name
-    let rowColumnIds = ['task', 'assignees', 'priority', 'date'];
-    let vals = {};
-    for (let columndId of rowColumnIds) {
-        vals[columndId] = document.getElementById(columndId).value;
-    }
-    let task = new Item(vals.task, vals.assignees, vals.priority, vals.date);
-    taskModel.addTask(task);
-
+    let ourColumnIds = ['task', 'assignees', 'priority', 'date'];
+    let currentTask = {};
+    for (let columndId of ourColumnIds) {
+        currentTask[columndId] = document.getElementById(columndId).value;
+    }   
+    let task = new Task(currentTask.task, currentTask.assignees, currentTask.priority, currentTask.date);
+    // Finished making task here
+    // Add to the task list
+    todoList.addTask(task);
 }
 
 function populateSelect(selectId, sList) {
@@ -50,14 +49,14 @@ function deleteRow(rowclass) {
 function removePurchased() {
 
     deleteRow('checked');
-    taskModel.update();
+    todoList.update();
 
 }
 
 function removeAll() {
 
-    taskModel.emptyList();
-    taskModel.update();
+    todoList.emptyList();
+    todoList.update();
 
 }
 
