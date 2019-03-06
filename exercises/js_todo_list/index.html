@@ -1,47 +1,53 @@
 ﻿<DOCTYPE html>
 <html lang=en>
 
+<!-- 
+    Author: Swopnil N. Shrestha
+    Class: CS330
+    Instructor: Dr. Roman Yasinovskyy
+    Date: 23/03/2019
+ -->
+
 <head>
     <title>To-Do List Application</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
-
 <body>
+    <!-- Main container used to keep all the elements in life -->
     <div class="container-fluid main-container">
         <div class="container-fluid" id="title-container">
             <h1 class="display-3">BusyBee</h1>
             <p class="lead">The productivity app for busy bees. Sometimes for busy people.</p>
         </div>
-        <div class="col-lg-12">
+        <form class="col-lg-12">
             <div class="container-fluid col-lg-12">
                 <div class="form-row">
-                    <div class="col">
-                        <h4>Task</h4>
+                    <div class="col form-group">
+                        <label for="taskNameValidation">Task</h4>
                         <input type=text class="form-control" name="task_name" id=task required/>
                     </div>
-                    <div class="col">
-                        <h4>Assigned To</h4>
+                    <div class="col form-group">
+                        <label for=assignedToValidation>Assigned To</h4>
                         <select name="assignees_name" id="assignees" class="form-control" required></select>
                     </div>
-                    <div class="col">
-                        <h4>Priority</h4>
+                    <div class="col form-group">
+                        <label for=priorityValidation>Priority</h4>
                         <select name="priority" id="priority" class="form-control" required>
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
                         </select>
                     </div>
-                    <div class="col">
-                        <h4>Date</h4>
+                    <div class="col form-group">
+                        <label for=dateValidation>Date</h4>
                         <input type="date" class="form-control" name='due_date' id="date" value="MM/DD/YY" required>
                     </div>
                 </div>
                 <br>
                 <button onclick="clickedon()" class="btn btn-primary" id=gobutt>Add Item</button>
             </div>
-
-        </div>
+        </form>
         <h1>To-Do</h1>
         <div class="col-lg-12">
             <table class="table table-bordered">
