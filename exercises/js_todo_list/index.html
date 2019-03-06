@@ -14,71 +14,60 @@
     <link rel="shortcut icon" type="image/png" href="https://static.planetminecraft.com/files/avatar/558440.png"/>
     <title>BusyBee Todo List</title>
 </head>
-
 <body>
     <!-- Load JavaScript implemented functions -->
     <script src="js/model.js" type=text/javascript></script>
     <script src="js/view.js" type=text/javascript></script>
     <script src="js/controller.js" type=text/javascript></script>
     <!-- Main container to contain all the page elements -->
-    <div class="container-fluid main-container">
-        <div class="container-fluid" id="title-container">
-            <h1 class="display-3">BusyBee</h1>
-            <p class="lead">The productivity app for busy bees. Sometimes for busy people.</p>
-        </div>
-        <!-- One-line row form starts here -->
-        <form class="col-lg-12">
-            <div class="container-fluid col-lg-12">
-                <div class="form-row">
-                    <div class="col form-group">
-                        <label for="taskNameValidation">Task</label>
-                        <input type=text class="form-control" name="task_name" id="task" required/>
-                    </div>
-                    <div class="col form-group">
-                        <label for="assigneeValidation">Assigned to</label>
-                        <select name="assignees_name" id="assignees" class="form-control"></select>
-                    </div>
-                    <div class="col form-group">
-                        <label for="priorityValidation">Priority</label>
-                        <select name="priority" id="priority" class="form-control">
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
-                    </div>
-                    <div class="col form-group">
-                        <label for="dateValidation">Date</label>
-                        <input type="date" class="form-control" name='due_date' id="date" value="MM/DD/YY" required>
-                    </div>
-                    <div class="col form-group">
-                            <button onclick="clickedon()" class="btn btn-primary" id=gobutt>Add Item</button>
-                    </div>
-                </div>
+    <div class="container">
+        <h1 class="display">BusyBee</h1>
+        <lead>The productivity app for busy bees, sometimes for busy people.</lead>
+    </div>
+    <div class="container">
+        <!-- Main Input Form -->
+        <form onsubmit="return false;">
+            <div class="form-group">
+                <!-- Task Name Input -->
+                <label for="inputTaskName">Name</label>
+                <input type="text" class="form-control" id="inputTaskName" placeholder="Name of task.." required>
+            </div>
+            <div class="form-group">
+                <!-- Task Assigned To Input -->
+                <label for="selectAssignedTo">Assigned To</label>
+                <select class="form-control" id="selectAssignedTo"><!-- Enter assignedTo options here --></select>
+            </div>
+            <div class="form-group">
+                <!-- Task Priority Input -->
+                <label for="selectPriority">Priority</label>
+                <select class="form-control" id="selectPriority"><!-- Enter selectPriority options here --></select>
+            </div>
+            <div class="form-group">
+                <!-- Task Due Date -->
+                <label for="inputDueDate">Due Date</label>
+                <input type="date" class="form-control" id="inputDueDate" required>
+            </div>
+            <div>
+                <!-- New task button -->
+                <input class="btn btn-lg btn-warning" type="submit" value="Add Task" onclick="clickAddTask()"></input>
             </div>
         </form>
-        <!-- Table for displaying the tasks -->
-        <div class="col-lg-12 main-table">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Task</th>
-                        <th>Assignee</th>
-                        <th>Priority</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody id="shoppinglist"></tbody>
+    </div>
+    <!-- Main Display Class -->
+    <div class="container table-container">
+        <h2>Ongoing Tasks</h2>
+        <table width="100%" id="ongoingTasksTable">
+            <!-- Ongoing Tasks Display -->
+            <tbody id="ongoingTasksTableBody"></tbody>
             </table>
-
-            <button class="btn btn-primary" id='remove_all' onclick=removeAll(); type="button" role="button">Remove All</button>
-            <!-- <button class="bottommargin float-right rightmargin" id='remove_purchased' onclick=removePurchased(); type="button" role="button">Remove Completed Task</button> -->
-
-        </div>
+        <h2>Completed Tasks</h2>
+        <table width="100%" id="completedTasksTable">
+            <!-- Finished Tasks Display -->
+            <tbody id="completedTasksTableBody"></tbody>
+        </table>
     </div>
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </body>
-
 </html>
 </DOCTYPE>

@@ -1,128 +1,28 @@
 /* jshint esversion: 6 */
-/* jshint node: true */
-/* jshint browser: true */
+/* jshint browser:true */
+/* jshint node:true */
 "use strict";
 
-var assigneeMembers = ["Charles Dickens", "Nikolai Gogol", "Jhumpa Lahiri",
-    "Alduous Huxley", "Carl Jung", "Steven Pinker", "Mihaly Csikszentmihalyi"];
+var ourColumnIds = ['inputTaskName', 'selectAssignedTo', 'selectPriority', 'inputDueDate'];
+var ongoingTodoList = new TodoList();
+var completedTodoList = new TodoList();
 
-var todoList = new TaskList();
-var todoView = new TaskView(todoList);
+// when 'add Task' button is clicked
+function clickAddTask(){
+    if (document.getElementById('inputTaskName').value !== "" && document.getElementById('inputDueDate').value !== ""){
+        addTaskToList();
+        // Update table to include new task
+        updateDocumentTableBody("ongoingTasksTableBody", ongoingTodoList);
+    } else {
+        console.log("Validation error");
+    }
+}
 
 // Grabs each task from form input and adds a new task in the TaskList
-function clickedon() {
-    let ourColumnIds = ['task', 'assignees', 'priority', 'date'];
+function addTaskToList() {
     let currentTask = {};
-    for (let columndId of ourColumnIds) {
-        currentTask[columndId] = document.getElementById(columndId).value;
-    }   
-    let task = new Task(currentTask.task, currentTask.assignees, currentTask.priority, currentTask.date);
-    // Finished making task here
-    // Add to the task list
-    todoList.addTask(task);
+    for (let columndId of ourColumnIds) currentTask[columndId] = document.getElementById(columndId).value;
+    let myTask = new Task(currentTask.inputTaskName, currentTask.selectAssignedTo, 
+    currentTask.selectPriority, currentTask.inputDueDate);
+    ongoingTodoList.addTask(myTask); // adding to todoList after parsing Task
 }
-
-function populateSelect(selectId, sList) {
-    for (let item in sList) {
-        console.log(item);
-    }
-    let sel = document.getElementById(selectId, sList);
-    for (let s of sList) {
-        let opt = document.createElement("option");
-        opt.value = s;
-        opt.innerHTML = s;
-        sel.appendChild(opt);
-    }
-}
-
-function deleteRow(rowclass) {
-
-    var rows = document.getElementsByClassName(rowclass);
-    for (let row of rows) {
-        //deleting either one of these breaks the function
-        row.parentNode.removeChild(row);
-        document.getElementsByClassName('table').deleteRow(row);
-    }
-
-}
-
-function removePurchased() {
-
-    deleteRow('checked');
-    todoList.update();
-
-}
-
-function removeAll() {
-
-    todoList.emptyList();
-    todoList.update();
-
-}
-
-
-var table = document.getElementById('output_table');
-var t_body = $('#all_output_rows');
-
-function newRow() {
-
-    var cell_Index = 0;
-    var row = table.insertRow(-1);
-    for (i = 0; i < 4; i++) {
-        var cell = row.insertCell(cell_Index);
-        cell_Index++;
-    }
-
-    row.setAttribute('class', 'output_rows');
-
-
-    var last_row = (table.rows.length - 1);
-    var first_cell = 0;
-
-    populateRows();
-
-    var set_row_id = $('#task_name_field').val();
-    row.setAttribute('id', set_row_id);
-    var row_id = row.getAttribute('id');
-    document.getElementById('output_table').rows[last_row].cells[first_cell].innerHTML = "<input type='checkbox' onchange=taskDone(" + row_id + ")>";
-
-}
-
-function populateRows() {
-
-    var priority = $('#priority').val();
-    if (priority == 'Low') {
-        document.getElementById('output_table').rows[second_to_last_row].setAttribute("style", "background-color: #adebad;");
-    }
-    if (priority == 'Medium') {
-        document.getElementById('output_table').rows[second_to_last_row].setAttribute("style", "background-color: #ffffb3;");
-    }
-    if (priority == 'High') {
-        document.getElementById('output_table').rows[second_to_last_row].setAttribute("style", "background-color: #ffcccc;");
-    }
-    var second_to_last_row = [table.rows.length - 1];
-
-    var task_name = $('#task').val();
-    document.getElementById('output_table').rows[second_to_last_row].cells[1].innerHTML = task_name;
-
-    var assignees = $('#assignees').val();
-    document.getElementById('output_table').rows[second_to_last_row].cells[2].innerHTML = assignees_name;
-
-    var date = $('#date').val();
-    document.getElementById('output_table').rows[second_to_last_row].cells[3].innerHTML = date;
-
-
-}
-
-function taskDone(x) {
-
-    x.classList.add('strike_through');
-
-}
-
-
-$(document).ready(function() {
-
-    populateSelect('assignees', assigneeMembers)
-
-})
