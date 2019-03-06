@@ -1,3 +1,7 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+/* jshint browser: true */
+'use strict';
 class ShoppingView {
     constructor(model) {
         // The bind() method creates a new function that, when called, has its this keyword set to the provided value.

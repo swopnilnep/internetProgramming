@@ -1,29 +1,38 @@
-var assignees_list = ['Fareway', 'Ace Hardware', 'Caseys', 'The Hatchery', 'Amundsens']
-var taskModel = new ShoppingList()
-var taskView = new ShoppingView(taskModel)
+/* jshint esversion: 6 */
+/* jshint node: true */
+/* jshint browser: true */
+
+"use strict";
+
+var assigneeMembers = ["Charles Dickens", "Nikolai Gogol", "Jhumpa Lahiri",
+    "Alduous Huxley", "Carl Jung", "Steven Pinker", "Mihaly Csikszentmihalyi"
+];
+
+var taskModel = new ShoppingList();
+var taskView = new ShoppingView(taskModel);
 
 function clickedon() {
-	//rowcolids uses id, not name
-    let rowcolids = ['task', 'assignees', 'priority', 'date']
-    let vals = {}
-    for (let cid of rowcolids) {
-        vals[cid] = document.getElementById(cid).value;
+    //rowcolids uses id, not name
+    let rowColumnIds = ['task', 'assignees', 'priority', 'date'];
+    let vals = {};
+    for (let columndId of rowColumnIds) {
+        vals[columndId] = document.getElementById(columndId).value;
     }
-    let task = new Item(vals.task, vals.assignees, vals.priority, vals.date)
-    taskModel.addTask(task)
-    
+    let task = new Item(vals.task, vals.assignees, vals.priority, vals.date);
+    taskModel.addTask(task);
+
 }
 
 function populateSelect(selectId, sList) {
-	for (let item in sList) {
-		console.log(item)
-	}
-    let sel = document.getElementById(selectId, sList)
+    for (let item in sList) {
+        console.log(item);
+    }
+    let sel = document.getElementById(selectId, sList);
     for (let s of sList) {
-        let opt = document.createElement("option")
-        opt.value = s
-        opt.innerHTML = s
-        sel.appendChild(opt)
+        let opt = document.createElement("option");
+        opt.value = s;
+        opt.innerHTML = s;
+        sel.appendChild(opt);
     }
 }
 
@@ -31,8 +40,8 @@ function deleteRow(rowclass) {
 
     var rows = document.getElementsByClassName(rowclass);
     for (let row of rows) {
-		//deleting either one of these breaks the function
-        row.parentNode.removeChild(row);     
+        //deleting either one of these breaks the function
+        row.parentNode.removeChild(row);
         document.getElementsByClassName('table').deleteRow(row);
     }
 
@@ -83,7 +92,7 @@ function newRow() {
 function populateRows() {
 
     //this is the last row, not 2nd to last :/
-	var priority = $('#priority').val();
+    var priority = $('#priority').val();
     if (priority == 'Low') {
         document.getElementById('output_table').rows[second_to_last_row].setAttribute("style", "background-color: #adebad;");
     }
@@ -114,9 +123,8 @@ function taskDone(x) {
 }
 
 
-$(document).ready(function () {
+$(document).ready(function() {
 
-    populateSelect('assignees', assignees_list)
-    
+    populateSelect('assignees', assigneeMembers)
+
 })
-

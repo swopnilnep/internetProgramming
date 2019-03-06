@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+/* jshint browser: true */
 'use strict';
 class Item {
     constructor(task, assignee, priority, date) {
