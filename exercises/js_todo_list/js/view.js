@@ -4,10 +4,10 @@ class ShoppingView {
         model.subscribe(this.redrawList.bind(this))
     }
 
-    redrawList(taskList, msg) {
-        let tbl = document.getElementById("taskList")
+    redrawList(shoppingList, msg) {
+        let tbl = document.getElementById("shoppinglist")
         tbl.innerHTML = ""
-        for (let task of taskList.newItems) {
+        for (let task of shoppingList.newItems) {
 
             this.addRow(task, tbl)
         }

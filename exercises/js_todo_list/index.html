@@ -1,53 +1,47 @@
-﻿<DOCTYPE html>
-<html lang=en>
-
-<!-- 
-    Author: Swopnil N. Shrestha
-    Class: CS330
-    Instructor: Dr. Roman Yasinovskyy
-    Date: 23/03/2019
- -->
-
+﻿<html>
 <head>
     <title>To-Do List Application</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
+
 <body>
-    <!-- Main container used to keep all the elements in life -->
-    <div class="container-fluid main-container">
-        <div class="container-fluid" id="title-container">
-            <h1 class="display-3">BusyBee</h1>
-            <p class="lead">The productivity app for busy bees. Sometimes for busy people.</p>
-        </div>
-        <form class="col-lg-12">
+    <div class="container-fluid">
+	<br>
+		<div class="container-fluid" id="title-container">
+                <h1 class="display-3">BusyBee</h1>
+                <p class="lead">The productivity app for busy bees. Sometimes for busy people.</p>
+		</div>
+        <div class="col-lg-12">
             <div class="container-fluid col-lg-12">
+			<br>
                 <div class="form-row">
-                    <div class="col form-group">
-                        <label for="taskNameValidation">Task</h4>
-                        <input type=text class="form-control" name="task_name" id=task required/>
+                    <div class="col">
+                        <h4>Task</h4>
+                        <input type=text class="form-control" name="task_name" id=task />
                     </div>
-                    <div class="col form-group">
-                        <label for=assignedToValidation>Assigned To</h4>
-                        <select name="assignees_name" id="assignees" class="form-control" required></select>
+                    <div class="col">
+                        <h4>Assigned To</h4>
+                        <select name="assignees_name" id="assignees" class="form-control"></select>
                     </div>
-                    <div class="col form-group">
-                        <label for=priorityValidation>Priority</h4>
-                        <select name="priority" id="priority" class="form-control" required>
+                     <div class="col">
+                        <h4>Priority</h4>
+                        <select name="priority" id="priority" class="form-control">
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
                         </select>
                     </div>
-                    <div class="col form-group">
-                        <label for=dateValidation>Date</h4>
-                        <input type="date" class="form-control" name='due_date' id="date" value="MM/DD/YY" required>
-                    </div>
+					<div class="col">
+                        <h4>Date</h4>
+                        <input type="date" class="form-control" name='due_date' id="date" value="MM/DD/YY" required>           
+					</div>
                 </div>
-                <br>
-                <button onclick="clickedon()" class="btn btn-primary" id=gobutt>Add Item</button>
+				<br>
+				<button onclick="clickedon()" class="btn btn-primary" id=gobutt>Add Item</button>					
             </div>
-        </form>
+
+        </div>
         <h1>To-Do</h1>
         <div class="col-lg-12">
             <table class="table table-bordered">
@@ -59,20 +53,20 @@
                         <th>Date</th>
                     </tr>
                 </thead>
-                <tbody id="taskList"></tbody>
+                <tbody id="shoppinglist"></tbody>
             </table>
-
+			
             <button class="bottommargin float-right" id='remove_all' onclick=removeAll(); type="button" role="button">Remove All</button>
             <button class="bottommargin float-right rightmargin" id='remove_purchased' onclick=removePurchased(); type="button" role="button">Remove Completed Task</button>
 
         </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/model.js" type=text/javascript></script>
     <script src="js/view.js" type=text/javascript></script>
     <script src="js/controller.js" type=text/javascript></script>
 </body>
 
+
 </html>
-</DOCTYPE>
