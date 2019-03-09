@@ -34,14 +34,14 @@ function updateDocumentContainerBody(tableId, tdl){
         var onclickFunctionCall = "sendToComplete";
     }
     else if (tdl.type === "complete") {
-        var interactiveCharacter = "𐄂";
+        var interactiveCharacter = "X";
         var onclickFunctionCall = "removeFromList";
     }
     // Adding the table body elements
     let tblBody = document.getElementById(tableId);
     tblBody.innerHTML = "";
     let tblBodyRow = document.createElement("div");
-    tblBodyRow.className="row";
+    tblBodyRow.className="row table-row";
     let allTaskIds = tdl.getAllTaskIds();
     for (let taskId of allTaskIds){
         // Add elements into task one by one
@@ -69,10 +69,10 @@ function updateDocumentContainerBody(tableId, tdl){
         // Remove or Add Function
         let done = document.createElement("div");
         done.className="col-1 table-cell";
-        let btn = document.createElement("button")
-        btn.className="btn btn-primary";
+        let btn = document.createElement("button");
+        btn.className = onclickFunctionCall == "sendToComplete"?  "btn btn-light" : "btn btn-danger";
         btn.appendChild(document.createTextNode(interactiveCharacter));
-        // btn.addEventListener("click",toggleTask(onclickFunctionCall, taskId));
+        btn.onclick = function(){toggleTask(onclickFunctionCall, taskId);}
         done.appendChild(btn);
         tblBodyRow.appendChild(done);
     }
@@ -90,7 +90,7 @@ function updateTaskContainerHead(containerId){
     tblHeadRow.className="row";
     for (let heading of Object.keys(tblRowHeadings)){
         let tblHeadCell = document.createElement("div");
-        tblHeadCell.className=`col-${tblRowHeadings[heading]} table-cell`;
+        tblHeadCell.className=`col-${tblRowHeadings[heading]} table-cell-heading`;
         let cellText = document.createTextNode(heading);
         tblHeadCell.appendChild(cellText);
         tblHeadRow.appendChild(tblHeadCell);

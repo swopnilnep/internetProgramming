@@ -18,6 +18,20 @@ function clickAddTask(){
     }
 }
 
+function toggleTask(taskType, newTaskId){
+    console.log(taskType);
+    if (taskType === "sendToComplete"){
+        completedTodoList.addTask(ongoingTodoList.getTaskById(newTaskId));
+        ongoingTodoList.removeTask(newTaskId);
+        updateDocumentContainerBody("completedTasksContainerBody", completedTodoList);
+        updateDocumentContainerBody("ongoingTasksContainerBody", ongoingTodoList);
+    } 
+    else if (taskType === "removeFromList"){
+        completedTodoList.removeTask(newTaskId);
+        updateDocumentContainerBody("completedTasksContainerBody", completedTodoList);
+    }
+}
+
 // Grabs each task from form input and adds a new task in the TaskList
 function addTaskToList() {
     let currentTask = {};
@@ -25,16 +39,4 @@ function addTaskToList() {
     let myTask = new Task(currentTask.inputTaskName, currentTask.selectAssignedTo, 
     currentTask.selectPriority, currentTask.inputDueDate);
     ongoingTodoList.addTask(myTask); // adding to todoList after parsing Task
-}
-
-function toggleTask(taskType, newTaskId){
-    if (taskType === "sendToComplete"){
-        completedTodoList.addTask(ongoingTodoList.getTaskById(newTaskId));
-        delete ongoingTodoList[newTaskId];
-        updateDocumentContainerBody("ongoingTasksContainerBody", ongoingTodoList);
-    } 
-    else if (taskType === "removeFromList"){
-        delete completedTodoList[newTaskId];
-        updateDocumentContainerBody("completedTasksContainerBody", completedTodoList);
-    }
 }

@@ -16,7 +16,7 @@ class TodoList {
     }
     removeTask(oldTaskId){
         console.log("remove task");
-        delete this.taskMap.oldTaskId;  // Remove the task from the dictionary by taskId
+        delete this.taskMap[oldTaskId];  // Remove the task from the dictionary by taskId
     }
     getTaskById(taskId){
         console.log("get task from id");
