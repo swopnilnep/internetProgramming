@@ -17,7 +17,4 @@ function populateSelectOption(elementId, optionsArray) {
     }
 }
 
-window.onload = function() {
-    populateSelectOption("#songArtist", allArtists);
-    populateSelectOption("#songLabel", allLabels);
-};
+ 
