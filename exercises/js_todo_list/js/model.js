@@ -4,7 +4,8 @@
 "use strict";
 
 class TodoList {
-    constructor(){
+    constructor(typeOfTable){
+        this.type = typeOfTable;
         this.taskMap = {};  // Contains taskId as a key and the Task object as its value
         this.nextTaskId = 0;
     }

@@ -4,15 +4,15 @@
 "use strict";
 
 var ourColumnIds = ['inputTaskName', 'selectAssignedTo', 'selectPriority', 'inputDueDate'];
-var ongoingTodoList = new TodoList();
-var completedTodoList = new TodoList();
+var ongoingTodoList = new TodoList("ongoing");
+var completedTodoList = new TodoList("complete");
 
 // when 'add Task' button is clicked
 function clickAddTask(){
     if (document.getElementById('inputTaskName').value !== "" && document.getElementById('inputDueDate').value !== ""){
         addTaskToList();
         // Update table to include new task
-        updateDocumentTableBody("ongoingTasksTableBody", ongoingTodoList);
+        updateDocumentContainerBody("ongoingTasksContainerBody", ongoingTodoList);
     } else {
         console.log("Validation error");
     }
@@ -25,4 +25,16 @@ function addTaskToList() {
     let myTask = new Task(currentTask.inputTaskName, currentTask.selectAssignedTo, 
     currentTask.selectPriority, currentTask.inputDueDate);
     ongoingTodoList.addTask(myTask); // adding to todoList after parsing Task
+}
+
+function toggleTask(taskType, newTaskId){
+    if (taskType === "sendToComplete"){
+        completedTodoList.addTask(ongoingTodoList.getTaskById(newTaskId));
+        delete ongoingTodoList[newTaskId];
+        updateDocumentContainerBody("ongoingTasksContainerBody", ongoingTodoList);
+    } 
+    else if (taskType === "removeFromList"){
+        delete completedTodoList[newTaskId];
+        updateDocumentContainerBody("completedTasksContainerBody", completedTodoList);
+    }
 }

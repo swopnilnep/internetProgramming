@@ -55,7 +55,6 @@
     </div>
     <!-- Main Display Class -->
     <div class="container" id="task-table">
-        <lead>Ongoing Tasks</lead>
         <table width="100%" id="ongoingTasksTable">
             <!-- Ongoing Tasks Display -->
             <thead id="ongoingTasksTableHead"></thead>
@@ -67,9 +66,16 @@
             <thead id="completedTasksTableHead"></thead>
             <tbody id="completedTasksTableBody"></tbody>
         </table>
-        <div class="container" id="ongoingTasksContainer"></div>
+        <lead>Ongoing Tasks</lead>
+        <div class="ongoingTasksContainer">
+            <div class="container" id="ongoingTasksContainerHead"></div>
+            <div class="container" id="ongoingTasksContainerBody"></div>
+        </div>
         <lead>Completed Tasks</lead>
-        <div class="container" id="completedTasksContainer"></div>
+        <div id="completedTasksContainer">
+            <div class="container" id="completedTasksContainerHead"></div>
+            <div class="container" id="completedTasksContainerBody"></div>
+        </div>
     </div>
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
