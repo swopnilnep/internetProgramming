@@ -18,6 +18,10 @@
     background-color: #eaf8bf;
 }
 
+.circle-button {
+    border-radius: 50%;
+   }
+
 .table-row{
     margin:5px;
 }

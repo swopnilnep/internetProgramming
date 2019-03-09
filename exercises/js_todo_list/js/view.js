@@ -29,12 +29,11 @@ window.onload = function() {
 // Updates the table everytime a change is made (okay for smaller todolist data)
 function updateDocumentContainerBody(tableId, tdl){
     // What happens if either type of list is pressed
+    let interactiveCharacter = "✓";
     if (tdl.type === "ongoing") {
-        var interactiveCharacter = "✓";
         var onclickFunctionCall = "sendToComplete";
     }
     else if (tdl.type === "complete") {
-        var interactiveCharacter = "X";
         var onclickFunctionCall = "removeFromList";
     }
     // Adding the table body elements
@@ -70,7 +69,7 @@ function updateDocumentContainerBody(tableId, tdl){
         let done = document.createElement("div");
         done.className="col-1 table-cell";
         let btn = document.createElement("button");
-        btn.className = onclickFunctionCall == "sendToComplete"?  "btn btn-light" : "btn btn-danger";
+        btn.className = onclickFunctionCall == "sendToComplete"?  "btn btn-light circle-button" : "btn btn-danger circle-button";
         btn.appendChild(document.createTextNode(interactiveCharacter));
         btn.onclick = function(){toggleTask(onclickFunctionCall, taskId);}
         done.appendChild(btn);
