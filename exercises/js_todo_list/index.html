@@ -54,17 +54,22 @@
         </form>
     </div>
     <!-- Main Display Class -->
-    <div class="container table-container" id="task-table">
+    <div class="container" id="task-table">
         <lead>Ongoing Tasks</lead>
         <table width="100%" id="ongoingTasksTable">
             <!-- Ongoing Tasks Display -->
+            <thead id="ongoingTasksTableHead"></thead>
             <tbody id="ongoingTasksTableBody"></tbody>
             </table>
-        <lead>Completed Tasks</lead>
+        
         <table width="100%" id="completedTasksTable">
             <!-- Finished Tasks Display -->
+            <thead id="completedTasksTableHead"></thead>
             <tbody id="completedTasksTableBody"></tbody>
         </table>
+        <div class="container" id="ongoingTasksContainer"></div>
+        <lead>Completed Tasks</lead>
+        <div class="container" id="completedTasksContainer"></div>
     </div>
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

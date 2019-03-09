@@ -22,32 +22,31 @@ function populateSelectOption(elementId, optionsArray) {
 window.onload = function() {
     populateSelectOption("#selectAssignedTo", assignedToOptions);
     populateSelectOption("#selectPriority", priorityOptions);
-    updateDocumentTableHead("ongoingTasksTable");
-    updateDocumentTableHead("completedTasksTable");
+    updateTaskContainerHead("ongoingTasksContainer");
+    updateTaskContainerHead("completedTasksContainer");
 };
 
-function updateDocumentTableBody(tableId, tdl){
-    let tblBody = document.getElementById(tableId);
-    tblBody.innerHTML="";
-    let allTaskIds = tdl.getAllTaskIds();
-    for (let taskId of allTaskIds){
-        let tblBodyRow = document.createElement('tr');
-        let task = tdl.getTaskById(taskId);
-        // Add task elements
-        tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(task.name)));
-        tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(task.assigned)));
-        tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(task.priority)));
-        tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(task.dueDate)));
-        tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(taskId)));
-        // add the row to the table body
-        tblBody.appendChild(tblBodyRow);
-    }
-}
+// function updateDocumentTableBody(tableId, tdl){
+//     let tblBody = document.getElementById(tableId);
+//     tblBody.innerHTML="";
+//     let allTaskIds = tdl.getAllTaskIds();
+//     for (let taskId of allTaskIds){
+//         let tblBodyRow = document.createElement('tr');
+//         let task = tdl.getTaskById(taskId);
+//         // Add task elements
+//         tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(task.name)));
+//         tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(task.assigned)));
+//         tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(task.priority)));
+//         tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(task.dueDate)));
+//         tblBodyRow.appendChild(document.createElement("td").appendChild(document.createTextNode(taskId)));
+//         // add the row to the table body
+//         tblBody.appendChild(tblBodyRow);
+//     }
+// }
 
 // Update the table once the task(s) are added
 function updateDocumentTableHead(tableId) {
-    let table = document.getElementById(tableId);
-    let tblHead = document.createElement('thead');
+    let tblHead = document.getElementById(tableId);
     // Take the row headings and make an HTML table out of them
     let tblRowHeadings = ['Task Name','Assigned To','Priority','Due Date',''];
     let tblHeadRow = document.createElement("tr");
@@ -58,5 +57,22 @@ function updateDocumentTableHead(tableId) {
         tblHeadRow.appendChild(tblHeadCell);
     }
     tblHead.appendChild(tblHeadRow);
-    table.appendChild(tblHead);
+}
+
+// Update the bootstrap grid once the tasks are added
+function updateTaskContainerHead(containerId){
+    let containerHead = document.getElementById(containerId);
+    containerHead.innerHTML="";
+    // Take the row headings and make an HTML container out of them
+    let tblRowHeadings = ['Task Name','Assigned To','Priority','Due Date'];
+    let tblHeadRow = document.createElement("div");
+    tblHeadRow.className="row";
+    for (let heading of tblRowHeadings){
+        let tblHeadCell = document.createElement("div");
+        tblHeadCell.className="col";
+        let cellText = document.createTextNode(heading);
+        tblHeadCell.appendChild(cellText);
+        tblHeadRow.appendChild(tblHeadCell);
+    }
+    containerHead.appendChild(tblHeadRow);
 }
