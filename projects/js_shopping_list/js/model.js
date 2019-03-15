@@ -4,11 +4,12 @@
 
 class Item {
     // This class includes everything that need to go on each row of the list.
-    constructor(name, store, section, quantity) {
+    constructor(name, quantity, price, store, section) {
         this._name = name;
+        this._quantity = quantity;
+        this._price = price;
         this._store = store;
         this._section = section;
-        this._quantity = quantity;
         this._removed = false;
     }
 
@@ -32,6 +33,10 @@ class Item {
         return this._removed;
     }
 
+    get price() {
+        return this._price;
+    }
+    
     set removed(newBoolean) {
         this._removed = newBoolean;
     }
