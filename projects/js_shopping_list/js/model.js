@@ -36,7 +36,7 @@ class Item {
     get price() {
         return this._price;
     }
-    
+
     set removed(newBoolean) {
         this._removed = newBoolean;
     }
@@ -88,8 +88,18 @@ class ShoppingList extends Subject {
         this.publish("The list is cleaned up", this);
     }
 
+
+    clearlist() {
+        this.allItems = [];
+        this.publish("The list is cleared", this);
+    }
+
     get size() {
         return this.allItems.length;
+    }
+
+    update() {
+        this.publish("The list is cleared", this);
     }
 
     // iterator
@@ -105,4 +115,28 @@ class ShoppingList extends Subject {
 
 class LocalStorageSaver {
     // TODO: Implement the class
+    constructor(){
+        this.shoppingList = localStorage.getItem("shoppingList");
+        if (this.shoppingList){
+            this.shoppingList = JSON.parse(this.shoppingList);
+        }
+    }
+
+    retrieveList(){
+        if (this.shoppingList == null){
+            console.log("Data not saved at the moment");
+            return [];
+        } else {
+            return this.shoppingList;
+        }
+    }
+
+    clear_data(){
+        localStorage.setItem("shoppingList", null);
+    }
+
+    saveList(newList){
+        console.log("new data is saved")
+        localStorage.setItem("shoppingList", JSON.stringify(newList.allItems));
+    }
 }

@@ -20,20 +20,31 @@ function clean_list() {
 
 function empty_list() {
     // TODO: Remove all items from the list and local storage
-    shoppingModel.cleanlist();
+    shoppingModel.clearlist()
+    myDB.clear_data();
     // clear local storage
 }
 
 
 function save_list() {
     // TODO: Save the list to local storage
-    return;
+    myDB.saveList(shoppingModel);
 }
 
 
 function populate_list() {
+    shoppingModel.update(); // add the table in the beginnign
     // TODO: Read list from the local storage and add items to the model
-    return;
+    let oldItems = myDB.retrieveList();
+    for (let item of oldItems){
+        let name = item["_name"];
+        let quantity = item["_quantity"];
+        let price = item["_price"];
+        let section = item["_section"];
+        let store = item["_store"];
+        let newItem = new Item(name, quantity, price, store, section);
+        shoppingModel.add(newItem);
+    }
 }
 
 
@@ -43,11 +54,11 @@ function add_item() {
         return;
     } // do nothing if all the items are not added
 
-    let name = document.querySelector("#inputName");
-    let quantity = document.querySelector("#selectQuantity");
-    let price = document.querySelector("#inputPrice")
-    let store = document.querySelector("#selectStore");
-    let section = document.querySelector("#selectSection");
+    let name = document.querySelector("#inputName").value;
+    let quantity = document.querySelector("#selectQuantity").selectedOptions[0].value;
+    let price = document.querySelector("#inputPrice").value;
+    let store = document.querySelector("#selectStore").selectedOptions[0].value;
+    let section = document.querySelector("#selectSection").selectedOptions[0].value;
     let newItem = new Item(name, quantity, price, store, section);
 
     shoppingModel.add(newItem);
@@ -66,9 +77,9 @@ function populateSelect(selectId, sList) {
 
 
 window.onload = function () {
-    console.log("this is working");
+    console.log("window loaded");
     populateSelect("selectQuantity", quantities);
     populateSelect("selectStore", stores);
     populateSelect("selectSection", sections);
-    // populate_list();
+    populate_list();
 };

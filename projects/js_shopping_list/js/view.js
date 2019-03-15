@@ -18,12 +18,25 @@ class ShoppingView {
             tbl = document.createElement("table");
             tbl.setAttribute("id", "viewTable");
             viewDiv.appendChild(tbl);
+            
         }
 
         tbl.innerHTML="";
+        this.addHeadings(tbl);
         for (let shopItem of shoppingList){
             this.addRow(shopItem, tbl);
         }
+    }
+
+    addHeadings(parent){
+        let row = document.createElement("tr");
+        for (let val of ["", "Name", "Quantity", "Price", "Store", "Section"]) {
+            let td = document.createElement("th");
+            td.innerText = val;
+            row.appendChild(td);
+        }
+
+        parent.appendChild(row);
     }
 
     addRow(item, parent) {
