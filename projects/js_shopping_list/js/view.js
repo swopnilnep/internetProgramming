@@ -11,6 +11,8 @@ class ShoppingView {
 
     redrawList(shoppingList, msg) {
         // TODO: Redraw the table, include all the items from the model
+        console.log(msg);
+        let viewDiv = document.querySelector("")
     }
 
     addRow(item, parent) {
