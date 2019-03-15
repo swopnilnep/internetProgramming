@@ -1,0 +1,32 @@
+#title-container {
+    background-color: #f5bb00;
+    text-align: center;
+    border-bottom-left-radius: 10px;   
+    border-bottom-right-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#task-table {
+    margin-top: 20px;
+}
+
+.table-cell-heading {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: lightgray;
+}
+
+.circle-button {
+    border-radius: 50%;
+   }
+
+.table-row{
+    margin:5px;
+}
+
+.col {
+    border-radius: 5px;
+    border: 1px;
+}  
