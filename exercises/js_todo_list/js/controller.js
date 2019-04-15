@@ -1,34 +1,33 @@
 /* jshint esversion: 6 */
 /* jshint browser:true */
 /* jshint node:true */
-"use strict";
+'use strict';
 
-var ourColumnIds = ['inputTaskName', 'selectAssignedTo', 'selectPriority', 'inputDueDate'];
-var ongoingTodoList = new TodoList("ongoing");
-var completedTodoList = new TodoList("complete");
+var ourColumnIds = [ 'inputTaskName', 'selectAssignedTo', 'selectPriority', 'inputDueDate' ];
+var ongoingTodoList = new TodoList('ongoing');
+var completedTodoList = new TodoList('complete');
 
 // when 'add Task' button is clicked
-function clickAddTask(){
-    if (document.getElementById('inputTaskName').value !== "" && document.getElementById('inputDueDate').value !== ""){
+function clickAddTask() {
+    if (document.getElementById('inputTaskName').value !== '' && document.getElementById('inputDueDate').value !== '') {
         addTaskToList();
         // Update table to include new task
-        updateDocumentContainerBody("ongoingTasksContainerBody", ongoingTodoList);
+        updateDocumentContainerBody('ongoingTasksContainerBody', ongoingTodoList);
     } else {
-        console.log("Validation error");
+        console.log('Validation error');
     }
 }
 
-function toggleTask(taskType, newTaskId){
+function toggleTask(taskType, newTaskId) {
     console.log(taskType);
-    if (taskType === "sendToComplete"){
+    if (taskType === 'sendToComplete') {
         completedTodoList.addTask(ongoingTodoList.getTaskById(newTaskId));
         ongoingTodoList.removeTask(newTaskId);
-        updateDocumentContainerBody("completedTasksContainerBody", completedTodoList);
-        updateDocumentContainerBody("ongoingTasksContainerBody", ongoingTodoList);
-    } 
-    else if (taskType === "removeFromList"){
+        updateDocumentContainerBody('completedTasksContainerBody', completedTodoList);
+        updateDocumentContainerBody('ongoingTasksContainerBody', ongoingTodoList);
+    } else if (taskType === 'removeFromList') {
         completedTodoList.removeTask(newTaskId);
-        updateDocumentContainerBody("completedTasksContainerBody", completedTodoList);
+        updateDocumentContainerBody('completedTasksContainerBody', completedTodoList);
     }
 }
 
@@ -36,7 +35,11 @@ function toggleTask(taskType, newTaskId){
 function addTaskToList() {
     let currentTask = {};
     for (let columndId of ourColumnIds) currentTask[columndId] = document.getElementById(columndId).value;
-    let myTask = new Task(currentTask.inputTaskName, currentTask.selectAssignedTo, 
-    currentTask.selectPriority, currentTask.inputDueDate);
+    let myTask = new Task(
+        currentTask.inputTaskName,
+        currentTask.selectAssignedTo,
+        currentTask.selectPriority,
+        currentTask.inputDueDate
+    );
     ongoingTodoList.addTask(myTask); // adding to todoList after parsing Task
 }
