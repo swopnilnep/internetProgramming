@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<h1>Flask Jokes Generator</h1>
+<p>Select a type of joke and language to begin.</p>
+    <form method="GET">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <select class="form-control" name="type">
+                            <option value="all">All</option>
+                            <option value="neutral">Neutral</option>
+                            <option value="chuck">Chuck Norris</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <select class="form-control" name="language">
+                            <option value="en">English</option>
+                            <option value="de">German</option>
+                            <option value="es">Spanish</option>
+                            <option value="gl">Galician</option>
+                            <option value="eus">Basque</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                        <div class="form-group">
+                            <button id="submit" class="button btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+            </div>
+        </form>
+{% endblock %}
