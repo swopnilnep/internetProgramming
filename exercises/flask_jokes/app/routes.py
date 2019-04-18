@@ -6,12 +6,11 @@ from app import app
 def home():
     language = request.args.get("language")
     category = request.args.get("type")
-    home = request.args.get("home")
     
     if language and category:
         error = None
         try:
-            joke_dict = joke(language=language, category=category)
+            joke_dict = get_joke_dict(language=language, category=category)
         except (pyjokes.pyjokes.LanguageNotFoundError\
             ,pyjokes.pyjokes.CategoryNotFoundError):
             joke_dict = invalid_combination_error(language=language, category=category)
@@ -20,7 +19,7 @@ def home():
     else:
         return render_template("form.html")
 
-def joke(language, category):
+def get_joke_dict(language, category):
     content = pyjokes.get_joke(language, category)
     
     joke_dict = {
