@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="alert alert-light">
+        Language: {{ joke['language'] }}
+    </div>
+    <div class="alert alert-light">
+        Category: {{ joke['category'] }}
+    </div>
+</div>
+
+{% if error %}
+<div class="alert alert-danger">{{ joke['content'] }}</div>
+{% else %}
+<div class="alert alert-primary">{{ joke['content'] }}</div>
+{% endif %}
+
+<form action="/" method="GET">
+    <button type="submit"  class="btn btn-primary">Back</button>
+</form>
+
+
+
+{% endblock %}
