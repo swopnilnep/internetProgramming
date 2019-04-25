@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>HaveIBeenPwned?</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/minstyle.io@0.2.3/css/minstyle.io.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="ms-box ms-boxed-none">
+            <div class="ms-content">
+                <div class="ms-title">
+                    <h3>Have You Been Pawned?</h3>
+                </div>
+                <div class="ms-text">
+                    <p>
+                        Based on <a href='https://haveibeenpwned.com/'>HaveIBeenPwnd</a> by Troy Hunt, this tool checks your email and passwords for appearances in information security leaks. Enter any or both of the fields below.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {% block content %} 
+
+        {% if error %}
+        <div class="container">
+            <div class="ms-alert ms-red">
+                <p>{{ error }}</p>
+            </div>
+        </div>
+        {% endif %} 
+
+        {% if password %}
+        <div class="container">
+            
+            {% if password['found'] %}
+            <div class="ms-alert ms-red">
+                <p class="fas fa-exclamation-triangle">{{ password['text'] }}</i>
+            </div>
+            {% else %}
+            <div class="ms-alert ms-green">
+                <p>{{ password['text'] }}</p>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %} {% endblock %}
+        
+        {% if email %}
+        <div class="container">
+            
+            {% if email['pawned'] %}
+            <div class="ms-alert ms-red">
+                <p class="fas fa-exclamation-triangle">{{ email['text'] }}</p>
+            </div>
+            
+            <div class="col-s-12">
+                
+                <table class="ms-triped">
+                    <tbody>
+                        <tr class="ms-title">
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Content</th>
+                            <!-- <th>Description</th> -->
+                            <th>Accounts</th>
+                            <th>Link</th>
+                        </tr>
+                        {% for breach in email['content'] %}
+                        <tr>
+                            <td>{{ breach['name'] }}</td>
+                            <td>{{ breach['date'] }}</td>
+                            <td>{{ breach['types'] }}</td>
+                            <!-- <td>{{ breach['description'] }}</td> -->
+                            <td>{{ breach['scope'] }}</td>
+                            <td><a href="{{ 'https://' + breach['domain'] }}">Visit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+            </div>
+            
+            {% else %}
+            <div class="ms-alert ms-green">
+                <p>{{ email['text'] }}</p>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %} 
+
+        {% if home %}
+        <div class='container'>
+            <form action="/search" method="POST">
+    
+                <div class="col-s-12 col-m-6">
+                    <label for="Login">Has your <b>email</b> has been in a security breach?</label>
+                    <input type="email" placeholder="Enter email to check..." name="email" id="email">
+                </div>
+    
+                <div class="col-s-12 col-m-6">
+                    <label for="Login">Has your <b>password</b> has been in a security breach?</label>
+                    <input type="password" placeholder="Enter a password to check..." name="password" id="password">
+                </div>
+    
+                <div class="col-s-12">
+                    <button type="submit" class="ms-btn ms-blue ms-block">Check for Vulnerabilities</button>
+                </div>
+    
+            </form>
+        </div>
+        {% endif %}
+
+        {% if search %}
+        <form action="/" method="GET">
+            <button class="form-control btn" type="submit">Back</button>
+        </form>
+        {% endif %}
+
+    </div>
+
+    </body>
+    
+    </html>
