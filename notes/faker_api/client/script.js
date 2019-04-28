@@ -9,7 +9,7 @@ async function getData(url) {
     .catch(error => console.log(error));
 }
 
-async function getName() {
+async function getJoke() {
     let response = await getData("http://localhost:5000/api/v1/names");
     printValue(response.name, "#response");
 }
