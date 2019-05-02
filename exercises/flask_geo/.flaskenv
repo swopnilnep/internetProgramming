@@ -1,2 +1,2 @@
-export FLASK_APP=app.py
+export FLASK_APP=geo.py
 export FLASK_ENV=development

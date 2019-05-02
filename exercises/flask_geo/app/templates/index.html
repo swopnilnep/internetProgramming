@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>Welcome to the world database. Select query method to begin.</p>
+<form>
+    <div class="row">
+        <div class="form-group col">
+            <input class="btn btn-dark" 
+                type="button"
+                value="Country"
+                onclick="window.location.href='country'">
+            <input class="btn btn-dark" 
+                type="button"
+                value="Continent"
+                onclick="window.location.href='continent'">
+            <input class="btn btn-dark" 
+                type="button"
+                value="Region"
+                onclick="window.location.href='region'">
+            <input class="btn btn-dark" 
+                type="button"
+                value="Government"
+                onclick="window.location.href='governmentform'">
+            
+        </div>
+
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="container">
+    <p>
+        Pick an option below.
+    </p>
+    <form action="/" method="POST">
+        <div class="row">
+            <div class="col">
+                <select class="form-control" name="param">
+                    {% for option in options %}
+                        <option value="{{ column ~ ',' ~ option[0] }}">{{ option[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <input type="submit" class="btn btn-dark" value="Submit">
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
