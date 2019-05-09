@@ -7,7 +7,7 @@ def index():
     if request.method == "GET":
         return render_template("index.html")
     else:
-        column,parameter = request.form.get("param").split(",")
+        column,parameter = request.form.get("param").split(":")
         data_out = get_data_from_db(f"SELECT * FROM country WHERE {column} = '{parameter}' ORDER BY name;")
         return render_template("result.html", rows=data_out, display_text=parameter)
 

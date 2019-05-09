@@ -11,7 +11,7 @@
             <div class="col">
                 <select class="form-control" name="param">
                     {% for option in options %}
-                        <option value="{{ column ~ ',' ~ option[0] }}">{{ option[0] }}</option>
+                        <option value="{{ column ~ ':' ~ option[0] }}">{{ option[0] }}</option>
                     {% endfor %}
                 </select>
             </div>
